@@ -1,16 +1,30 @@
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, useLocation } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import AppRouter from './router/AppRouter'
 
-function App() {
+function Layout() {
+  const location = useLocation()
+  const isKanat = location.pathname.startsWith('/kanat')
+
   return (
-    <BrowserRouter>
-      <Navbar />
+    <>
+      {!isKanat && <Navbar />}
       <main>
         <AppRouter />
       </main>
-      <Footer />
+      {!isKanat && <Footer />}
+    </>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <Layout />
+      </AuthProvider>
     </BrowserRouter>
   )
 }

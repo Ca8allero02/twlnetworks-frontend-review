@@ -72,6 +72,7 @@ const styles = {
   auth: {
     display: 'flex',
     gap: '0.75rem',
+    alignItems: 'center',
   },
   btnLogin: {
     textDecoration: 'none',
