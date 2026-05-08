@@ -16,3 +16,21 @@ body {
   color: var(--color-text);
   font-family: sans-serif;
 }
+/* Responsive global */
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+section, .section {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+}

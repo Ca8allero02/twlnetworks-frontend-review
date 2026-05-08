@@ -1,92 +1,64 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import twlLogo from '../../assets/logos/TWL_NETWORKS_transp.png'
+import './Navbar.css'
+
+const links = [
+  { to: '/', label: 'Inicio' },
+  { to: '/chickboxing', label: 'Chickboxing' },
+  { to: '/desempacados', label: 'Desempacados' },
+  { to: '/mas-alla-del-polliseo', label: 'Más Allá' },
+  { to: '/golden-feather', label: 'Golden Feather' },
+  { to: '/kanat', label: 'Kanat' },
+]
 
 export default function Navbar() {
   const location = useLocation()
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  const links = [
-    { to: '/', label: 'Inicio' },
-    { to: '/chickboxing', label: 'Chickboxing' },
-    { to: '/desempacados', label: 'Desempacados' },
-    { to: '/mas-alla-del-polliseo', label: 'Más Allá' },
-    { to: '/golden-feather', label: 'Golden Feather' },
-    { to: '/kanat', label: 'Kanat' },
-  ]
+  const toggleMenu = () => setMenuOpen(!menuOpen)
+  const closeMenu = () => setMenuOpen(false)
 
   return (
-    <nav style={styles.nav}>
-      <Link to="/">
-        <img src={twlLogo} alt="TWL Networks" style={styles.logo} />
+    <nav className="navbar">
+      <Link to="/" onClick={closeMenu}>
+        <img src={twlLogo} alt="TWL Networks" className="navbar__logo" />
       </Link>
-      <ul style={styles.links}>
+
+      {/* Hamburguesa */}
+      <button className="navbar__hamburger" onClick={toggleMenu} aria-label="Menú">
+        <span />
+        <span />
+        <span />
+      </button>
+
+      {/* Links */}
+      <ul className={`navbar__links ${menuOpen ? 'open' : ''}`}>
         {links.map(link => (
           <li key={link.to}>
             <Link
               to={link.to}
-              style={{
-                ...styles.link,
-                color: location.pathname === link.to ? '#ff0000' : '#8d96ab'
-              }}
+              className={`navbar__link ${location.pathname === link.to ? 'active' : ''}`}
+              onClick={closeMenu}
             >
               {link.label}
             </Link>
           </li>
         ))}
+        {/* En móvil los botones de auth van dentro del menú */}
+        <li className="navbar__auth-mobile">
+          <Link to="/login" className="navbar__btn-login" onClick={closeMenu}>Iniciar sesión</Link>
+        </li>
+        <li className="navbar__auth-mobile">
+          <Link to="/registro" className="navbar__btn-register" onClick={closeMenu}>Registrarse</Link>
+        </li>
       </ul>
-      <div style={styles.auth}>
-        <Link to="/login" style={styles.btnLogin}>Iniciar sesión</Link>
-        <Link to="/registro" style={styles.btnRegister}>Registrarse</Link>
+
+      {/* Auth en desktop */}
+      <div className="navbar__auth">
+        <Link to="/login" className="navbar__btn-login">Iniciar sesión</Link>
+        <Link to="/registro" className="navbar__btn-register">Registrarse</Link>
       </div>
     </nav>
   )
-}
-
-const styles = {
-  nav: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '0 2rem',
-    height: '70px',
-    backgroundColor: '#0b0c12',
-    borderBottom: '2px solid #ff0000',
-    position: 'sticky',
-    top: 0,
-    zIndex: 100,
-  },
-  logo: {
-    height: '45px',
-    objectFit: 'contain',
-  },
-  links: {
-    display: 'flex',
-    gap: '1.5rem',
-    listStyle: 'none',
-  },
-  link: {
-    textDecoration: 'none',
-    fontWeight: '600',
-    fontSize: '0.9rem',
-    transition: 'color 0.2s',
-  },
-  auth: {
-    display: 'flex',
-    gap: '0.75rem',
-    alignItems: 'center',
-  },
-  btnLogin: {
-    textDecoration: 'none',
-    color: '#8d96ab',
-    fontWeight: '600',
-    fontSize: '0.9rem',
-  },
-  btnRegister: {
-    textDecoration: 'none',
-    backgroundColor: '#ff0000',
-    color: '#ffffff',
-    padding: '0.4rem 1rem',
-    borderRadius: '4px',
-    fontWeight: '600',
-    fontSize: '0.9rem',
-  },
 }
