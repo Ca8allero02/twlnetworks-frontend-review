@@ -1,0 +1,141 @@
+.chickboxing-page {
+  background-color: #0b0c12;
+  min-height: 100vh;
+}
+
+/* HERO */
+.chickboxing-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #1a1a2e;
+  background: linear-gradient(180deg, #1a0000 0%, #0b0c12 100%);
+}
+
+.chickboxing-hero__logo {
+  width: 280px;
+  max-width: 85%;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+}
+
+.chickboxing-hero__desc {
+  color: #8d96ab;
+  font-size: 1rem;
+  max-width: 580px;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.chickboxing-hero__btn {
+  text-decoration: none;
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 0.7rem 2rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+}
+
+/* SECCIÓN */
+.chickboxing-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HALL OF FAME */
+.chickboxing-hall-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.chickboxing-hall-logo {
+  width: 320px;
+  max-width: 90%;
+  object-fit: contain;
+}
+
+/* GRID CAMPEONES */
+.chickboxing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.chickboxing-card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #1a1a2e;
+  background-color: #111320;
+}
+
+.chickboxing-card__img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+
+.chickboxing-card__info {
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.chickboxing-card__season {
+  color: #ff0000;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.chickboxing-card__name {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .chickboxing-hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .chickboxing-hero__logo {
+    width: 220px;
+  }
+
+  .chickboxing-hero__desc {
+    font-size: 0.95rem;
+  }
+
+  .chickboxing-section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .chickboxing-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .chickboxing-card__name {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .chickboxing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chickboxing-hall-logo {
+    width: 240px;
+  }
+}
