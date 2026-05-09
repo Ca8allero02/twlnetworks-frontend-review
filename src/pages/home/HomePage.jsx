@@ -33,7 +33,6 @@ const PROGRAMS = [
   },
 ]
 
-import secarodLogo from '../../assets/sponsors/SECAROD_COSMETICS_TRANSBG.png'
 import silveriosLogo from '../../assets/sponsors/silverios_logo_tbg.png'
 
 const SPONSORS = [
