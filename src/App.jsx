@@ -3,6 +3,7 @@ import { AuthProvider } from './context/AuthContext'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import AppRouter from './router/AppRouter'
+import PageTransition from './components/shared/PageTransition'
 
 function Layout() {
   const location = useLocation()
@@ -11,9 +12,11 @@ function Layout() {
   return (
     <>
       {!isKanat && <Navbar />}
-      <main>
-        <AppRouter />
-      </main>
+      <PageTransition>
+        <main>
+          <AppRouter />
+        </main>
+      </PageTransition>
       {!isKanat && <Footer />}
     </>
   )
