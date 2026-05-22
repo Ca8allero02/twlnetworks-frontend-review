@@ -8,6 +8,7 @@ import s4 from '../../assets/programs/champions/s4_cartolopollo.png'
 import s5 from '../../assets/programs/champions/s5_pollon_wick.png'
 import s6 from '../../assets/programs/champions/s6_rougazanma.png'
 import s7 from '../../assets/programs/champions/s7_scor-pio.png'
+import s8 from '../../assets/programs/champions/s8_lazaro_capaldi.png'
 import './ChickboxingPage.css'
 
 const CHAMPIONS = [
@@ -18,6 +19,7 @@ const CHAMPIONS = [
   { season: 5, name: 'Pollon Wick',    img: s5 },
   { season: 6, name: 'Rougazanma',     img: s6 },
   { season: 7, name: 'Scor-Pio',       img: s7 },
+  { season: 7, name: 'Lazaro Capaldi', img: s8 },
 ]
 
 export default function ChickboxingPage() {
