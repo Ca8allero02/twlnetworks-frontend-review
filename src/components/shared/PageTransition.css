@@ -12,8 +12,20 @@
   pointer-events: none;
 }
 
+.page-transition__black {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0b0c12;
+  z-index: 9998;
+}
+
 .page-transition__video {
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 9999;
 }
