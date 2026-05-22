@@ -19,7 +19,7 @@ const CHAMPIONS = [
   { season: 5, name: 'Pollon Wick',    img: s5 },
   { season: 6, name: 'Rougazanma',     img: s6 },
   { season: 7, name: 'Scor-Pio',       img: s7 },
-  { season: 7, name: 'Lazaro Capaldi', img: s8 },
+  { season: 8, name: 'Lazaro Capaldi', img: s8 },
 ]
 
 export default function ChickboxingPage() {
