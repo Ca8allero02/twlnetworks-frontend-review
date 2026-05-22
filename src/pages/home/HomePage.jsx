@@ -5,6 +5,8 @@ import cbcLogo from '../../assets/programs/new_logo_CBC.png'
 import desempacadosLogo from '../../assets/programs/DESEMPACA2_LOGO_transparente.png'
 import masAllaLogo from '../../assets/programs/LOGO_MAS_ALLA_DEL_POLLISEO.png'
 import secarodLogo from '../../assets/sponsors/SECAROD_COSMETICS_TRANSBG.png'
+import silveriosLogo from '../../assets/sponsors/silverios_logo_tbg.png'
+import './HomePage.css'
 
 const PROGRAMS = [
   {
@@ -33,7 +35,14 @@ const PROGRAMS = [
   },
 ]
 
-import silveriosLogo from '../../assets/sponsors/silverios_logo_tbg.png'
+const VALUES = [
+  { title: 'Creatividad', desc: 'Ideas originales y nuevas formas de contar historias.' },
+  { title: 'Comunidad', desc: 'Espacios donde creadores y audiencias se sienten parte del proyecto.' },
+  { title: 'Colaboración', desc: 'Apoyo a streamers y creadores independientes.' },
+  { title: 'Innovación', desc: 'Nuevas tecnologías y formatos para experiencias únicas.' },
+  { title: 'Respeto', desc: 'Ambiente familiar, seguro y accesible para todos.' },
+  { title: 'Pasión', desc: 'Todo nace del amor por el contenido y las historias.' },
+]
 
 const SPONSORS = [
   { name: 'Secarod Professional Cosmetics', logo: secarodLogo, url: null },
@@ -55,50 +64,107 @@ export default function HomePage() {
   const isLive = streamingStatus && Object.values(streamingStatus).some(v => v?.live === true)
 
   return (
-    <div style={styles.page}>
+    <div className="home-page">
 
       {/* HERO */}
-      <section style={styles.hero}>
-        <img src={twlLogo} alt="TWL Networks" style={styles.heroLogo} />
-        <p style={styles.heroSubtitle}>
-          Entretenimiento digital, música y producción creativa
-        </p>
+      <section className="home-hero">
+        <img src={twlLogo} alt="TWL Networks" className="home-hero__logo" />
+        <p className="home-hero__tagline">The Winged Legends</p>
+        <p className="home-hero__name">Entretenimiento digital · Música · Producción creativa</p>
+
         {!loadingStream && (
-          <div style={{
-            ...styles.streamBadge,
-            backgroundColor: isLive ? '#ff0000' : '#1a1a2e',
-            border: isLive ? '1px solid #ff0000' : '1px solid #8d96ab',
-          }}>
-            <span style={{
-              width: '10px',
-              height: '10px',
-              borderRadius: '50%',
-              backgroundColor: isLive ? '#fff' : '#8d96ab',
-              display: 'inline-block',
-              marginRight: '8px',
-            }} />
+          <div
+            className="home-hero__stream-badge"
+            style={{
+              backgroundColor: isLive ? '#ff0000' : '#1a1a2e',
+              border: isLive ? '1px solid #ff0000' : '1px solid #8d96ab',
+            }}
+          >
+            <span
+              className="home-hero__stream-dot"
+              style={{ backgroundColor: isLive ? '#fff' : '#8d96ab' }}
+            />
             {isLive ? '🔴 EN VIVO AHORA' : 'Sin transmisión activa'}
           </div>
         )}
-        <div style={styles.heroLinks}>
-          <Link to="/kanat" style={styles.heroLinkSecondary}>Kanat</Link>
-          <Link to="/golden-feather" style={styles.heroLinkSecondary}>Golden Feather Studios</Link>
+
+        <div className="home-hero__links">
+          <Link to="/kanat" className="home-hero__link">Kanat</Link>
+          <Link to="/golden-feather" className="home-hero__link">Golden Feather Studios</Link>
+        </div>
+      </section>
+
+      {/* SOBRE TWL NETWORKS */}
+      <section className="home-section">
+        <h2 className="home-section__title">¿Qué es TWL Networks?</h2>
+        <div className="home-about">
+          <p className="home-about__desc">
+            <span className="home-about__highlight">TWL Networks</span> — The Winged Legends — es una plataforma
+            creativa dedicada al entretenimiento digital, la producción audiovisual y el desarrollo
+            de universos narrativos originales. Desde transmisiones en vivo hasta música, animación
+            y videojuegos, funciona como un estudio creativo independiente donde las ideas se
+            transforman en experiencias para la audiencia.
+          </p>
+          <p className="home-about__desc">
+            Uno de los pilares del proyecto es la construcción de un
+            <span className="home-about__highlight"> multiverso narrativo propio</span>, donde distintos
+            programas, personajes y producciones forman parte de un mismo mundo creativo. También
+            colaboramos con streamers, artistas y creadores independientes a través de
+            <span className="home-about__highlight"> Nak+</span>, nuestra comunidad de amigos y
+            creadores que comparten valores de apoyo mutuo, creatividad y crecimiento.
+          </p>
+          <div className="home-values-grid">
+            {VALUES.map(value => (
+              <div key={value.title} className="home-value-card">
+                <h4 className="home-value-card__title">{value.title}</h4>
+                <p className="home-value-card__desc">{value.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* MISIÓN Y VISIÓN */}
+      <section className="home-section">
+        <h2 className="home-section__title">Misión y Visión</h2>
+        <div className="home-mv-grid">
+          <div className="home-mv-card">
+            <div className="home-mv-card__icon">🎯</div>
+            <h3 className="home-mv-card__title">Misión</h3>
+            <p className="home-mv-card__desc">
+              Crear contenido original que entretenga, conecte y construya comunidad,
+              utilizando formatos innovadores como streaming, música, animación y
+              experiencias interactivas. Transformar ideas en historias que puedan
+              compartirse en múltiples plataformas.
+            </p>
+          </div>
+          <div className="home-mv-card">
+            <div className="home-mv-card__icon">🚀</div>
+            <h3 className="home-mv-card__title">Visión</h3>
+            <p className="home-mv-card__desc">
+              Convertirnos en un estudio creativo reconocido dentro del entretenimiento
+              digital independiente, expandiendo el universo de The Winged Legends hacia
+              nuevas plataformas, formatos y audiencias alrededor del mundo.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* PROGRAMAS */}
-      <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Nuestros Programas</h2>
-        <div style={styles.programsGrid}>
+      <section className="home-section">
+        <h2 className="home-section__title">Nuestros Programas</h2>
+        <div className="home-programs-grid">
           {PROGRAMS.map(program => (
-            <Link to={program.path} key={program.id} style={styles.programCard}>
-              <div style={styles.programLogoWrapper}>
-                <img src={program.logo} alt={program.name} style={styles.programLogo} />
+            <Link to={program.path} key={program.id} className="home-program-card">
+              <div className="home-program-card__logo-wrapper">
+                <img src={program.logo} alt={program.name} className="home-program-card__logo" />
               </div>
-              <div style={styles.programInfo}>
-                <h3 style={{ ...styles.programName, color: program.color }}>{program.name}</h3>
-                <p style={styles.programDesc}>{program.description}</p>
-                <span style={{ ...styles.programBtn, backgroundColor: program.color }}>
+              <div className="home-program-card__info">
+                <h3 className="home-program-card__name" style={{ color: program.color }}>
+                  {program.name}
+                </h3>
+                <p className="home-program-card__desc">{program.description}</p>
+                <span className="home-program-card__btn" style={{ backgroundColor: program.color }}>
                   Ver más →
                 </span>
               </div>
@@ -108,16 +174,16 @@ export default function HomePage() {
       </section>
 
       {/* PATROCINADORES */}
-      <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Patrocinadores</h2>
-        <div style={styles.sponsorsRow}>
+      <section className="home-section">
+        <h2 className="home-section__title">Patrocinadores</h2>
+        <div className="home-sponsors-row">
           {SPONSORS.map(sponsor => (
             sponsor.url
-              ? <a href={sponsor.url} target="_blank" rel="noopener noreferrer" key={sponsor.name} style={styles.sponsorCard}>
-                  <img src={sponsor.logo} alt={sponsor.name} style={styles.sponsorLogo} />
+              ? <a href={sponsor.url} target="_blank" rel="noopener noreferrer" key={sponsor.name} className="home-sponsor-card">
+                  <img src={sponsor.logo} alt={sponsor.name} className="home-sponsor-logo" />
                 </a>
-              : <div key={sponsor.name} style={styles.sponsorCard}>
-                  <img src={sponsor.logo} alt={sponsor.name} style={styles.sponsorLogo} />
+              : <div key={sponsor.name} className="home-sponsor-card">
+                  <img src={sponsor.logo} alt={sponsor.name} className="home-sponsor-logo" />
                 </div>
           ))}
         </div>
@@ -125,146 +191,4 @@ export default function HomePage() {
 
     </div>
   )
-}
-
-const styles = {
-  page: {
-    backgroundColor: '#0b0c12',
-    minHeight: '100vh',
-  },
-  hero: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '5rem 2rem',
-    textAlign: 'center',
-    borderBottom: '1px solid #1a1a2e',
-  },
-  heroLogo: {
-    width: '320px',
-    maxWidth: '90%',
-    objectFit: 'contain',
-    marginBottom: '1.5rem',
-  },
-  heroSubtitle: {
-    color: '#8d96ab',
-    fontSize: '1.1rem',
-    marginBottom: '1.5rem',
-    maxWidth: '500px',
-  },
-  streamBadge: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    padding: '0.5rem 1.2rem',
-    borderRadius: '20px',
-    color: '#ffffff',
-    fontSize: '0.85rem',
-    fontWeight: '700',
-    marginBottom: '2rem',
-    letterSpacing: '0.05em',
-  },
-  heroLinks: {
-    display: 'flex',
-    gap: '1rem',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
-  heroLinkSecondary: {
-    textDecoration: 'none',
-    color: '#8d96ab',
-    border: '1px solid #8d96ab',
-    padding: '0.4rem 1.2rem',
-    borderRadius: '4px',
-    fontSize: '0.9rem',
-    fontWeight: '600',
-  },
-  section: {
-    padding: '4rem 2rem',
-    maxWidth: '1100px',
-    margin: '0 auto',
-  },
-  sectionTitle: {
-    color: '#ffffff',
-    fontSize: '1.6rem',
-    fontWeight: '700',
-    marginBottom: '2rem',
-    borderLeft: '4px solid #ff0000',
-    paddingLeft: '1rem',
-  },
-  programsGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: '1.5rem',
-  },
-  programCard: {
-    backgroundColor: '#111320',
-    borderRadius: '8px',
-    overflow: 'hidden',
-    textDecoration: 'none',
-    border: '1px solid #1a1a2e',
-    transition: 'border-color 0.2s',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  programLogoWrapper: {
-    backgroundColor: '#0b0c12',
-    padding: '2rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '180px',
-  },
-  programLogo: {
-    maxHeight: '130px',
-    maxWidth: '100%',
-    objectFit: 'contain',
-  },
-  programInfo: {
-    padding: '1.2rem',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.6rem',
-    flex: 1,
-  },
-  programName: {
-    fontSize: '1rem',
-    fontWeight: '700',
-  },
-  programDesc: {
-    color: '#8d96ab',
-    fontSize: '0.88rem',
-    lineHeight: '1.5',
-    flex: 1,
-  },
-  programBtn: {
-    display: 'inline-block',
-    color: '#ffffff',
-    padding: '0.35rem 0.9rem',
-    borderRadius: '4px',
-    fontSize: '0.82rem',
-    fontWeight: '700',
-    alignSelf: 'flex-start',
-    marginTop: '0.5rem',
-  },
-  sponsorsRow: {
-    display: 'flex',
-    gap: '2rem',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-  },
-  sponsorCard: {
-    backgroundColor: '#111320',
-    border: '1px solid #1a1a2e',
-    borderRadius: '8px',
-    padding: '1.5rem 2rem',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  sponsorLogo: {
-    height: '60px',
-    objectFit: 'contain',
-    filter: 'brightness(0.9)',
-  },
 }
