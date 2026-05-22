@@ -1,0 +1,229 @@
+.kanat-page {
+  background-color: #050507;
+  min-height: 100vh;
+  color: #ffffff;
+  font-family: sans-serif;
+}
+
+/* HEADER */
+.kanat-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.kanat-header__tag {
+  color: #8d96ab;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+.kanat-header__logo {
+  width: 260px;
+  max-width: 80%;
+  object-fit: contain;
+  margin-bottom: 0.8rem;
+  filter: brightness(1.1);
+}
+
+.kanat-header__sub {
+  color: #8d96ab;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* HERO */
+.kanat-hero {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.kanat-hero__title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  line-height: 1.2;
+}
+
+.kanat-hero__desc {
+  color: #8d96ab;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.kanat-hero__links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.kanat-hero__btn-spotify {
+  text-decoration: none;
+  background-color: #1db954;
+  color: #000000;
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.kanat-hero__btn-yt {
+  text-decoration: none;
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* SECCIÓN */
+.kanat-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.kanat-section__title {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* INTEGRANTES */
+.kanat-members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 2rem;
+}
+
+.kanat-member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.6rem;
+}
+
+.kanat-member-card__img-wrapper {
+  width: 140px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #0f0f0f;
+}
+
+.kanat-member-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.kanat-member-card__name {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.kanat-member-card__role {
+  color: #8d96ab;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+/* FOOTER */
+.kanat-footer {
+  border-top: 1px solid #1a1a1a;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.kanat-footer__links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.kanat-footer__link {
+  color: #8d96ab;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.kanat-footer__copy {
+  color: #3a3a3a;
+  font-size: 0.8rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .kanat-header {
+    padding: 2.5rem 1.5rem 1.5rem;
+  }
+
+  .kanat-header__logo {
+    width: 200px;
+  }
+
+  .kanat-hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .kanat-hero__title {
+    font-size: 1.5rem;
+  }
+
+  .kanat-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .kanat-members-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .kanat-member-card__img-wrapper {
+    width: 100%;
+    height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kanat-header__tag {
+    font-size: 0.75rem;
+  }
+
+  .kanat-hero__title {
+    font-size: 1.2rem;
+  }
+
+  .kanat-members-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .kanat-footer__links {
+    gap: 1.2rem;
+  }
+}
