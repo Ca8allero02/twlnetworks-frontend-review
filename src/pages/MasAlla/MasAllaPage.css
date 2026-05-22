@@ -1,0 +1,186 @@
+.masalla-page {
+  background-color: #0b0c12;
+  min-height: 100vh;
+}
+
+/* HERO */
+.masalla-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #1a1a2e;
+  background: linear-gradient(180deg, #1a1000 0%, #0b0c12 100%);
+}
+
+.masalla-hero__logo {
+  width: 320px;
+  max-width: 85%;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+}
+
+.masalla-hero__desc {
+  color: #8d96ab;
+  font-size: 1rem;
+  max-width: 580px;
+  line-height: 1.7;
+}
+
+/* SECCIÓN */
+.masalla-section {
+  padding: 4rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.masalla-section__title {
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  border-left: 4px solid #f5a000;
+  padding-left: 1rem;
+}
+
+/* INFO CARDS */
+.masalla-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.masalla-info-card {
+  background-color: #111320;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.masalla-info-card__icon {
+  font-size: 2rem;
+}
+
+.masalla-info-card__title {
+  color: #f5a000;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.masalla-info-card__desc {
+  color: #8d96ab;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* PRÓXIMAMENTE */
+.masalla-coming-soon {
+  background-color: #111320;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 4rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.masalla-coming-soon__icon {
+  font-size: 3rem;
+}
+
+.masalla-coming-soon__title {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.masalla-coming-soon__desc {
+  color: #8d96ab;
+  font-size: 0.9rem;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+/* CONDUCTOR */
+.masalla-host {
+  background-color: #111320;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.masalla-host__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #f5a000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.masalla-host__name {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.masalla-host__role {
+  color: #f5a000;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.masalla-host__desc {
+  color: #8d96ab;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .masalla-hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .masalla-hero__logo {
+    width: 240px;
+  }
+
+  .masalla-section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .masalla-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .masalla-host {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .masalla-hero__logo {
+    width: 200px;
+  }
+
+  .masalla-section__title {
+    font-size: 1.3rem;
+  }
+}
