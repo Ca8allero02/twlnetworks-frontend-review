@@ -1,3 +1,4 @@
+// GoldenFeatherPage.jsx
 import { Link } from 'react-router-dom'
 import gfLogo from '../../assets/logos/golden_feather_transparente.png'
 import kanatLogo from '../../assets/logos/kanat_logo_bg_transparent.png'

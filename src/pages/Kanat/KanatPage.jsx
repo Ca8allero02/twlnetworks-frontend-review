@@ -35,10 +35,10 @@ export default function KanatPage() {
           pegados y un universo propio dentro de TWL NETWORKS.
         </p>
         <div className="kanat-hero__links">
-          <a href="https://twlnetworks.org/spotify" target="_blank" rel="noopener noreferrer" className="kanat-hero__btn-spotify">
+          <a href="https://open.spotify.com/artist/1mNXIQpxFWVWjSOY6VilcD?si=qZ8JHhnTRDSxm3oKEQsbwg" target="_blank" rel="noopener noreferrer" className="kanat-hero__btn-spotify">
             ▶ Escuchar en Spotify
           </a>
-          <a href="https://twlnetworks.org/ytmusic" target="_blank" rel="noopener noreferrer" className="kanat-hero__btn-yt">
+          <a href="https://music.youtube.com/channel/UCUygH_fZlUw5nGJk37LpkwQ?si=7mMWQXJYAMzIoUS6" target="_blank" rel="noopener noreferrer" className="kanat-hero__btn-yt">
             ▶ Escuchar en YouTube Music
           </a>
         </div>
@@ -61,8 +61,8 @@ export default function KanatPage() {
 
       <footer className="kanat-footer">
         <div className="kanat-footer__links">
-          <a href="https://twlnetworks.org/spotify" target="_blank" rel="noopener noreferrer" className="kanat-footer__link">Spotify</a>
-          <a href="https://twlnetworks.org/ytmusic" target="_blank" rel="noopener noreferrer" className="kanat-footer__link">YouTube Music</a>
+          <a href="https://open.spotify.com/artist/1mNXIQpxFWVWjSOY6VilcD?si=qZ8JHhnTRDSxm3oKEQsbwg" target="_blank" rel="noopener noreferrer" className="kanat-footer__link">Spotify</a>
+          <a href="https://music.youtube.com/channel/UCUygH_fZlUw5nGJk37LpkwQ?si=7mMWQXJYAMzIoUS6" target="_blank" rel="noopener noreferrer" className="kanat-footer__link">YouTube Music</a>
           <Link to="/" className="kanat-footer__link">TWL NETWORKS</Link>
         </div>
         <p className="kanat-footer__copy">© KANAT · TWL NETWORKS</p>
