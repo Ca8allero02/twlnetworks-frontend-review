@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+// HomePage.jsx
 import { Link } from 'react-router-dom'
 import twlLogo from '../../assets/logos/TWL_NETWORKS_transp.png'
 import cbcLogo from '../../assets/programs/new_logo_CBC.png'
@@ -6,6 +6,7 @@ import desempacadosLogo from '../../assets/programs/DESEMPACA2_LOGO_transparente
 import masAllaLogo from '../../assets/programs/LOGO_MAS_ALLA_DEL_POLLISEO.png'
 import secarodLogo from '../../assets/sponsors/SECAROD_COSMETICS_TRANSBG.png'
 import silveriosLogo from '../../assets/sponsors/silverios_logo_tbg.png'
+import StreamingBadge from '../../components/shared/StreamingBadge'
 import './HomePage.css'
 
 const PROGRAMS = [
@@ -50,19 +51,6 @@ const SPONSORS = [
 ]
 
 export default function HomePage() {
-  const [streamingStatus, setStreamingStatus] = useState(null)
-  const [loadingStream, setLoadingStream] = useState(true)
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/streaming/status`)
-      .then(res => res.json())
-      .then(data => setStreamingStatus(data))
-      .catch(() => setStreamingStatus(null))
-      .finally(() => setLoadingStream(false))
-  }, [])
-
-  const isLive = streamingStatus && Object.values(streamingStatus).some(v => v?.live === true)
-
   return (
     <div className="home-page">
 
@@ -72,21 +60,8 @@ export default function HomePage() {
         <p className="home-hero__tagline">The Winged Legends</p>
         <p className="home-hero__name">Entretenimiento digital · Música · Producción creativa</p>
 
-        {!loadingStream && (
-          <div
-            className="home-hero__stream-badge"
-            style={{
-              backgroundColor: isLive ? '#ff0000' : '#1a1a2e',
-              border: isLive ? '1px solid #ff0000' : '1px solid #8d96ab',
-            }}
-          >
-            <span
-              className="home-hero__stream-dot"
-              style={{ backgroundColor: isLive ? '#fff' : '#8d96ab' }}
-            />
-            {isLive ? '🔴 EN VIVO AHORA' : 'Sin transmisión activa'}
-          </div>
-        )}
+        {/* StreamingBadge maneja su propio estado internamente */}
+        <StreamingBadge />
 
         <div className="home-hero__links">
           <Link to="/kanat" className="home-hero__link">Kanat</Link>

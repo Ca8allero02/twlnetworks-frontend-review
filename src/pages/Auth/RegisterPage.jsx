@@ -1,3 +1,4 @@
+// RegisterPage.jsx
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
@@ -25,15 +26,20 @@ export default function RegisterPage() {
 
     setLoading(true)
     try {
-      const res = await api.post('/auth/register', {
-        username: form.username,
+      await api.post('/auth/register', {
+        name: form.username,
         email: form.email,
         password: form.password,
       })
-      login(res.data.token, res.data.user)
+      // Registro exitoso, ahora hacemos login automático
+      const loginRes = await api.post('/auth/login', {
+        email: form.email,
+        password: form.password,
+      })
+      login(loginRes.data.token, loginRes.data.user)
       navigate('/')
     } catch (err) {
-      setError(err.response?.data?.message || 'Error al crear la cuenta')
+    setError(err.response?.data?.error || 'Error al crear la cuenta')
     } finally {
       setLoading(false)
     }

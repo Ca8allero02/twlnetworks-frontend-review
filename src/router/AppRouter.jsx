@@ -17,17 +17,10 @@ import RegisterPage from '../pages/Auth/RegisterPage'
 import ChickboxingApplyPage from '../pages/Chickboxing/ChickboxingApplyPage'
 import DesempacadosApplyPage from '../pages/Desempacados/DesempacadosApplyPage'
 
+import ProtectedRoute from '../components/shared/ProtectedRoute'
+
 // Admin
 import AdminPage from '../pages/Admin/AdminPage'
-
-// Ruta protegida
-function ProtectedRoute({ adminOnly = false }) {
-  const { user, isAdmin, loading } = useAuth()
-  if (loading) return <p style={{ color: '#8d96ab', padding: '2rem' }}>Cargando...</p>
-  if (!user) return <Navigate to="/login" />
-  if (adminOnly && !isAdmin) return <Navigate to="/" />
-  return <Outlet />
-}
 
 export default function AppRouter() {
   return (

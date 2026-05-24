@@ -1,3 +1,4 @@
+// LoginPage.jsx
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
@@ -23,7 +24,7 @@ export default function LoginPage() {
       login(res.data.token, res.data.user)
       navigate('/')
     } catch (err) {
-      setError(err.response?.data?.message || 'Correo o contraseña incorrectos')
+      setError(err.response?.data?.error || 'Correo o contraseña incorrectos')
     } finally {
       setLoading(false)
     }
