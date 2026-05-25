@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getChampions } from '../../services/chickboxing.service'
+import Loader from '../../components/shared/Loader'
 import cbcLogo from '../../assets/programs/new_logo_CBC.png'
 import hallOfFame from '../../assets/programs/champions/HALL_OF_FAME_V2.png'
 import s1 from '../../assets/programs/champions/s1_polli_balboa.png'
@@ -11,18 +14,34 @@ import s7 from '../../assets/programs/champions/s7_scor-pio.png'
 import s8 from '../../assets/programs/champions/s8_lazaro_capaldi.png'
 import './ChickboxingPage.css'
 
-const CHAMPIONS = [
-  { season: 1, name: 'Polli Balboa',   img: s1 },
-  { season: 2, name: 'Otto Schindler', img: s2 },
-  { season: 3, name: 'El Pollo',       img: s3 },
-  { season: 4, name: 'Cartolopollo',   img: s4 },
-  { season: 5, name: 'Pollon Wick',    img: s5 },
-  { season: 6, name: 'Rougazanma',     img: s6 },
-  { season: 7, name: 'Scor-Pio',       img: s7 },
-  { season: 8, name: 'Lazaro Capaldi', img: s8 },
-]
+const CHAMPION_IMAGES = {
+  'polli balboa':   s1,
+  'otto schindler': s2,
+  'el pollo':       s3,
+  'cartolopollo':   s4,
+  'pollon wick':    s5,
+  'rougazanma':     s6,
+  'scor-pio':       s7,
+  'lazaro capaldi': s8,
+}
+
+const getChampionImage = (name) => {
+  if (!name) return null
+  return CHAMPION_IMAGES[name.toLowerCase().trim()] || null
+}
 
 export default function ChickboxingPage() {
+  const [champions, setChampions] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    getChampions()
+      .then(res => setChampions(res.data))
+      .catch(() => setError('No se pudieron cargar los campeones'))
+      .finally(() => setLoading(false))
+  }, [])
+
   return (
     <div className="chickboxing-page">
 
@@ -42,23 +61,51 @@ export default function ChickboxingPage() {
         <div className="chickboxing-hall-header">
           <img src={hallOfFame} alt="Salón de la Fama" className="chickboxing-hall-logo" />
         </div>
-        <div className="chickboxing-grid">
-          {CHAMPIONS.map(champion => (
-            <div key={champion.season} className="chickboxing-card">
-              <img
-                src={champion.img}
-                alt={champion.name}
-                className="chickboxing-card__img"
-              />
-              <div className="chickboxing-card__info">
-                <span className="chickboxing-card__season">
-                  Temporada {champion.season}
-                </span>
-                <h3 className="chickboxing-card__name">{champion.name}</h3>
-              </div>
-            </div>
-          ))}
-        </div>
+
+        {loading && <Loader mensaje="Cargando campeones..." />}
+
+        {error && (
+          <p style={{ color: '#ff6b6b', textAlign: 'center', padding: '2rem' }}>
+            {error}
+          </p>
+        )}
+
+        {!loading && !error && (
+          <div className="chickboxing-grid">
+            {champions.map(champion => {
+              const localImage = getChampionImage(champion.name)
+              const imageSrc = localImage || champion.image_url || null
+
+              return (
+                <div key={champion.id} className="chickboxing-card">
+                  {imageSrc ? (
+                    <img
+                      src={imageSrc}
+                      alt={champion.name}
+                      className="chickboxing-card__img"
+                    />
+                  ) : (
+                    <div className="chickboxing-card__img chickboxing-card__no-img">
+                      🐔
+                    </div>
+                  )}
+                  <div className="chickboxing-card__info">
+                    <span className="chickboxing-card__season">
+                      Temporada {champion.season}
+                    </span>
+                    <h3 className="chickboxing-card__name">{champion.name}</h3>
+                    {(champion.wins > 0 || champion.losses > 0 || champion.knockouts > 0) && (
+                      <p className="chickboxing-card__stats">
+                        {champion.wins}W · {champion.losses}L · {champion.knockouts}KO
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
+
       </section>
 
     </div>
