@@ -118,3 +118,14 @@
     background-color: #0b0c12;
   }
 }
+
+/* Ocultar items de auth móvil en desktop */
+.navbar__auth-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar__auth-mobile {
+    display: block;
+  }
+}

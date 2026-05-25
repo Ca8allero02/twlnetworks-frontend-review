@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
 import twlLogo from '../../assets/logos/TWL_NETWORKS_transp.png'
 import './Navbar.css'
 
@@ -14,10 +15,18 @@ const links = [
 
 export default function Navbar() {
   const location = useLocation()
+  const navigate = useNavigate()
+  const { user, isAdmin, logout } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
 
   const toggleMenu = () => setMenuOpen(!menuOpen)
   const closeMenu = () => setMenuOpen(false)
+
+  const handleLogout = () => {
+    logout()
+    closeMenu()
+    navigate('/')
+  }
 
   return (
     <nav className="navbar">
@@ -45,20 +54,73 @@ export default function Navbar() {
             </Link>
           </li>
         ))}
-        {/* En móvil los botones de auth van dentro del menú */}
-        <li className="navbar__auth-mobile">
-          <Link to="/login" className="navbar__btn-login" onClick={closeMenu}>Iniciar sesión</Link>
-        </li>
-        <li className="navbar__auth-mobile">
-          <Link to="/registro" className="navbar__btn-register" onClick={closeMenu}>Registrarse</Link>
-        </li>
+        {/* Auth en móvil — dos li separados */}
+{user ? (
+  <>
+    {isAdmin && (
+      <li className="navbar__auth-mobile">
+        <Link to="/admin" className="navbar__btn-login" onClick={closeMenu}>
+          Panel admin
+        </Link>
+      </li>
+    )}
+    <li className="navbar__auth-mobile">
+      <button onClick={handleLogout} className="navbar__btn-register" style={styles.logoutBtn}>
+        Cerrar sesión
+      </button>
+    </li>
+  </>
+) : (
+  <>
+    <li className="navbar__auth-mobile">
+      <Link to="/login" className="navbar__btn-login" onClick={closeMenu}>
+        Iniciar sesión
+      </Link>
+    </li>
+    <li className="navbar__auth-mobile">
+      <Link to="/registro" className="navbar__btn-register" onClick={closeMenu}>
+        Registrarse
+      </Link>
+    </li>
+  </>
+)}
       </ul>
 
       {/* Auth en desktop */}
-      <div className="navbar__auth">
-        <Link to="/login" className="navbar__btn-login">Iniciar sesión</Link>
-        <Link to="/registro" className="navbar__btn-register">Registrarse</Link>
-      </div>
+<div className="navbar__auth">
+  {user ? (
+    <>
+      {isAdmin && (
+        <Link to="/admin" className="navbar__btn-login" onClick={closeMenu}>
+          Panel admin
+        </Link>
+      )}
+      <span style={styles.userName}>Hola, {user.name}</span>
+      <button onClick={handleLogout} className="navbar__btn-register" style={styles.logoutBtn}>
+        Cerrar sesión
+      </button>
+    </>
+  ) : (
+    <>
+      <Link to="/login" className="navbar__btn-login">Iniciar sesión</Link>
+      <Link to="/registro" className="navbar__btn-register">Registrarse</Link>
+    </>
+  )}
+</div>
     </nav>
   )
+}
+
+const styles = {
+  userName: {
+    color: '#8d96ab',
+    fontSize: '0.88rem',
+    fontWeight: '600',
+  },
+  logoutBtn: {
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    fontFamily: 'inherit',
+  },
 }
